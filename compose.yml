@@ -1,0 +1,30 @@
+# docker-compose run --rm anpr
+version: "2.3"
+services:
+    service_name:
+        # image: sayyam/alpr_dependency:20.07.1
+        image: samajh/alpr:vpf_20.12_11.1.6
+        environment:
+          - NVIDIA_VISIBLE_DEVICES=0
+          - "DISPLAY"
+          - TZ=Asia/Calcutta
+          - NVIDIA_DRIVER_CAPABILITIES=video,compute,utility
+        working_dir: /app/
+        volumes:
+          - /tmp/.X11-unix/:/tmp/.X11-unix/
+          - ./ApplicationFolder/:/app/
+          - ./config/:/app/config/
+          - ./weights:/app/weights
+          - ./licenses:/app/licenses
+          - /etc/localtime/:/etc/localtime/
+        deploy:
+          resources:
+            reservations:
+              devices:
+                - driver: nvidia
+                  count: 1
+                  capabilities: [gpu]
+        restart: always
+        command: python main.py
+# networks:
+#     mainnet:

@@ -1,0 +1,28 @@
+# sudo docker-compose run --rm anpr
+version: "3.1"
+services:
+    service_name:
+        image: samajh/deepstream:6.4-triton-multiarch
+        environment:
+          - NVIDIA_VISIBLE_DEVICES=0
+          - "DISPLAY"
+          - TZ=Asia/Calcutta
+          - NVIDIA_DRIVER_CAPABILITIES=video,compute,utility
+        working_dir: /app/
+        volumes:
+          - /tmp/.X11-unix/:/tmp/.X11-unix/
+          - ./App_path/:/app/
+          - ./config/:/app/config/ #anpr_custom
+          - ./Videos/:/app/videos/
+          - ./weights:/app/weights
+          - ./licenses:/app/licenses
+          - /etc/localtime/:/etc/localtime/
+         deploy:
+           resources:
+             reservations:
+               devices:
+                 - driver: nvidia
+                   count: 1
+                   capabilities: [gpu]
+        restart: always
+        # command: python run.py

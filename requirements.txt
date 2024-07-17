@@ -11,9 +11,9 @@ aiofiles
 tqdm
 numba
 lmdb
-torch
+torch==2.2.0
 torchvision
-tensorrt
+tensorrt==8.6.1
 scikit-image
 onnx
 pycuda

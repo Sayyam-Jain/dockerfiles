@@ -1,7 +1,7 @@
 ## Dockerfile for Deepstream 6.4
 Based on *deepstream:6.4-triton-multiarch*
 
-```docker build -t samajh/deepstream:6.4-triton-multiarch . ```
+```docker build -t samajh/deepstream:7.0-triton-multiarch . ```
 
 #### If the applications are not running, do this:
 ````

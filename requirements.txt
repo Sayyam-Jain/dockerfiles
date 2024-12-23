@@ -1,0 +1,8 @@
+torch==2.2.0
+torchvision
+opencv-python
+ultralytics
+onnx 
+onnxslim 
+onnxruntime
+cupy-cuda12x
